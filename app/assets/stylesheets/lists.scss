@@ -1,14 +1,3 @@
 // Place all the styles related to the Lists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.grid_container {
-  width: 1300px;
-  margin: auto;
-  justify-items: center;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-flow: row;
-  row-gap: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px
-}

@@ -1,9 +1,18 @@
-<h1><%= @list.name %> - movies list: </h1>
-<% @movies.each do |movie|%>
-  <div class="d-flex">
-    <li> <%= movie.title %> - </li>
-    <%= link_to "DELETE MOVIE FROM LIST", bookmark_path(Bookmark.where(movie_id:movie.id, list_id:@list.id).first), method: :delete%>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%=@list.image_url%>)">
+  <div class="container">
+    <h1><%= @list.name %> - movies list: </h1>
+    <%= link_to "ADD MOVIE TO LIST", new_list_bookmark_path(@list), class:"btn btn-outline-light" %>
   </div>
-<% end %>
+</div>
 
-<%= link_to "ADD MOVIE TO lIST", new_list_bookmark_path(@list) %>
+<div class="grid_container">
+  <% @movies.each do |movie|%>
+    <div class="card d-flex" style="width: 18rem;">
+      <%= image_tag movie.poster_url, class:"card-img-top" %>
+        <div class="card-body bottom-align-text">
+            <h5 class="card-title mt-auto"><%= movie.title %></h5>
+            <%= link_to "Delete movie from list", bookmark_path(Bookmark.where(movie_id:movie.id, list_id:@list.id).first), method: :delete%>
+        </div>
+    </div>
+  <% end %>
+</div>

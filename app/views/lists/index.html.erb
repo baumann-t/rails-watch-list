@@ -8,12 +8,12 @@
 
 <div class="grid_container">
   <% @lists.each do |list|%>
-    <div class="card" style="width: 18rem;">
-      <%= image_tag list.image_url, width: 200, class:"card-img-top" %>
-      <div class="card-body">
-        <h5 class="card-title"><%= list.name %></h5>
-        <%= link_to 'Add a movie', list_path(list) %>
-      </div>
+    <div class="card d-flex" style="width: 18rem;">
+      <%= image_tag list.image_url, width: 200, height:150, class:"card-img-top" %>
+        <div class="card-body bottom-align-text">
+            <h5 class="card-title mt-auto"><%= list.name %></h5>
+            <%= link_to 'View list!', list_path(list) %>
+        </div>
     </div>
   <% end %>
 </div>
