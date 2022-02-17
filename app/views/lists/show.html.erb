@@ -1,2 +1,9 @@
 <h1><%= @list.name %> - movies list: </h1>
+<% @movies.each do |movie|%>
+  <div class="d-flex">
+    <li> <%= movie.title %> - </li>
+    <%= link_to "DELETE MOVIE FROM LIST", bookmark_path(Bookmark.where(movie_id:movie.id, list_id:@list.id).first), method: :delete%>
+  </div>
+<% end %>
+
 <%= link_to "ADD MOVIE TO lIST", new_list_bookmark_path(@list) %>

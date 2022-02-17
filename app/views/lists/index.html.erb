@@ -1,9 +1,19 @@
-<h1>ALL EXISTING LISTS</h1>
-<% @lists.each do |list|%>
-  <div class="d-flex">
-    <li> <%=list.name%> - </li>
-    <%= link_to 'View this list', list_path(list) %>
+<div class="banner">
+  <div class="container">
+    <h1>Your movie watchlist!</h1>
+    <p>Create watchlists and add movies that you want to see!</p>
+    <%= link_to 'ADD NEW LIST', new_list_path, class:"btn btn-outline-light" %>
   </div>
-<% end %>
+</div>
 
-<%= link_to 'ADD NEW LIST', new_list_path %>
+<div class="grid_container">
+  <% @lists.each do |list|%>
+    <div class="card" style="width: 18rem;">
+      <%= image_tag list.image_url, width: 200, class:"card-img-top" %>
+      <div class="card-body">
+        <h5 class="card-title"><%= list.name %></h5>
+        <%= link_to 'Add a movie', list_path(list) %>
+      </div>
+    </div>
+  <% end %>
+</div>
