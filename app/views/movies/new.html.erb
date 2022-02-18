@@ -1,12 +1,22 @@
 <div class="shadow p-3 m-5 bg-white rounded">
   <form action="/movies/search" method="post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <legend>Search for a movie</legend>
+    <legend>Search for a movie on OMD</legend>
     <input type="text" name="search">
     <button>Search</button>
-
   </form>
 </div>
+
+<div class="shadow p-3 m-5 bg-white rounded">
+  <%= simple_form_for Movie.new do |f| %>
+  <legend>Add a movie manually</legend>
+    <%= f.input :title %>
+    <%= f.input :overview %>
+    <%= f.input :photo, as: :file %>
+    <%= f.submit%>
+  <% end %>
+</div>
+
 
 <% if @movie_result.nil? %>
 <% elsif  @movie_result['Response'] == 'False' %>
