@@ -1,0 +1,32 @@
+<div class="shadow p-3 m-5 bg-white rounded">
+  <form action="/movies/search" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <legend>Search for a movie</legend>
+    <input type="text" name="search">
+    <button>Search</button>
+
+  </form>
+</div>
+
+<% if @movie_result.nil? %>
+<% elsif  @movie_result['Response'] == 'False' %>
+<h1>MOVIE NOT FOUND IN OMDB DATABASE</h1>
+<% else %>
+<% @new_movie = Movie.new%>
+<div class="grid_container">
+    <div class="card d-flex" style="width: 18rem;">
+      <%= image_tag @movie_result["Poster"], class:"card-img-top" %>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= @movie_result["Title"] %></h5>
+            <p><%= @movie_result["Plot"] %></h5>
+            <%= form_for(@new_movie) do |f| %>
+            <%= f.hidden_field :title, :value => @movie_result["Title"] %>
+            <%= f.hidden_field :overview, :value => @movie_result["Plot"] %>
+            <%= f.hidden_field :poster_url, :value => @movie_result["Poster"] %>
+            <%= f.hidden_field :rating, :value => @movie_result["imdbRating"] %>
+            <%= f.submit %>
+            <% end %>
+        </div>
+    </div>
+</div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="banner">
+  <div class="container">
+    <h1>All Movies</h1>
+    <p>Browse your list of movies and add new movies to your list</p>
+    <%= link_to 'ADD NEW MOVIE', new_movie_path, class:"btn btn-outline-light" %>
+  </div>
+</div>
+
+
+<div class="grid_container">
+  <% @movies.each do |movie|%>
+    <div class="card d-flex" style="width: 18rem;">
+      <%= image_tag movie.poster_url, class:"card-img-top" %>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title"><%= movie.title %></h5>
+            <p><%= movie.overview %></h5>
+        </div>
+      <%= link_to "Delete movie from list", movie_path(movie), method: :delete, class:"btn btn-warning mt-auto mb-2 mx-4"%>
+    </div>
+  <% end %>
+</div>

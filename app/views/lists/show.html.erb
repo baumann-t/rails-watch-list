@@ -1,8 +1,17 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%=@list.image_url%>)">
   <div class="container">
     <h1><%= @list.name %> - movies list: </h1>
-    <%= link_to "ADD MOVIE TO LIST", new_list_bookmark_path(@list), class:"btn btn-outline-light" %>
   </div>
+</div>
+
+<div class="shadow p-3 m-5 bg-white rounded">
+  <h1>ADD A MOVIE TO THE <%= @list.name.upcase %> LIST </h1>
+
+  <%= simple_form_for [@list, @bookmark] do |f| %>
+    <%= f.association :movie, collection: Movie.all, input_html: { class: "form-control", required: true } %>
+    <%= f.input :comment %>
+    <%= f.submit %>
+  <% end %>
 </div>
 
 <div class="grid_container">

@@ -1,4 +1,8 @@
 class ListsController < ApplicationController
+
+  def home
+  end
+
   def index
     @lists = List.all
   end
@@ -6,6 +10,7 @@ class ListsController < ApplicationController
   def show
     @list = List.find(params[:id])
     @movies = @list.movies
+    @bookmark = Bookmark.new
   end
 
   def new
